@@ -1,0 +1,11 @@
+target '远大商学院' do
+
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'MJRefresh'
+pod 'SDCycleScrollView'
+pod 'MBProgressHUD'
+pod 'ICViewPager'
+pod 'UMengSocialCOM', '~> 5.2.1'
+
+end
