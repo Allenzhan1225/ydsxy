@@ -28,6 +28,38 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    
+    
+    /// 先判断摄像头硬件是否好用
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        /// 用户是否允许摄像头使用
+        NSString * mediaType = AVMediaTypeVideo;
+        AVAuthorizationStatus  authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+        /// 不允许弹出提示框
+        if (authorizationStatus == AVAuthorizationStatusRestricted|| authorizationStatus == AVAuthorizationStatusDenied) {
+            
+            UIAlertController * alertC = [UIAlertController alertControllerWithTitle:@"摄像头访问受限" message:@"请到个人设置->隐私->相机里面打开" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alertC animated:YES completion:nil];
+            UIAlertAction * action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            [alertC addAction:action];
+            return ;
+        }else{
+            ////这里是摄像头可以使用的处理逻辑
+        }
+    } else {
+        /// 硬件问题提示
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"手机摄像头设备损坏" message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        
+        [alertView show];
+        
+    }
+
+
+    
+    
     //扫描区域
     CGRect areaRect = CGRectMake((screen_width - 218)/2, (screen_height - 218)/2, 218, 218);
     
