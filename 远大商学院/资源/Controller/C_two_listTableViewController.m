@@ -43,11 +43,18 @@ static NSString *identifier=@"cell";
     __weak typeof (self)temp=self;
     detail.manager=^(NSMutableArray *array){
         if (array.count==0) {
-            UILabel *label=[[UILabel alloc] initWithFrame:self.view.frame];
-            label.text=@"暂无任何数据";
-            label.textAlignment=NSTextAlignmentCenter;
-            [self.tableView addSubview:label];
+//            UILabel *label=[[UILabel alloc] initWithFrame:self.view.frame];
+//            label.text=@"暂无任何数据";
+//            label.textAlignment=NSTextAlignmentCenter;
+//            [self.tableView addSubview:label];
+            self.tableView.tableFooterView = [UIView new];
+            UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200 , 200 )];
+            CGPoint center = CGPointMake(self.view.center.x, self.view.center.y - 40);
+            imgView.center = center;
+            imgView.image = [UIImage imageNamed:@"prompt1.png"];
+            [self.tableView addSubview:imgView];
         }else{
+              self.tableView.tableFooterView = [UIView new];
             temp.dataArray=array;
             [temp.tableView reloadData];
         }

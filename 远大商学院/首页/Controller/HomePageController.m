@@ -138,16 +138,16 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
     
     //获取本地软件的版本号
     NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSLog(@"当前版本：%f  %f",[localVersion floatValue],[newVersion floatValue]);
+    
+    
+    NSLog(@"当前版本：%f  %f",[localVersion doubleValue],[newVersion doubleValue]);
     NSString *msg = [NSString stringWithFormat:@"您当前的版本是V%@，发现新版本V%@，是否下载新版本？",localVersion,newVersion];
 
     //对比发现的新版本和本地的版本
-    if ([newVersion floatValue] > [localVersion floatValue])
+    if ([newVersion compare:localVersion options:NSNumericSearch] == NSOrderedDescending)
     {
-        
-        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"升级提示"message:msg preferredStyle:UIAlertControllerStyleAlert];
-
+        
         [alert addAction:[UIAlertAction actionWithTitle:@"现在升级" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/%E8%BF%9C%E5%A4%A7%E5%95%86%E5%AD%A6%E9%99%A2/id1139429427?mt=8"]];//这里写的URL地址是该app在app store里面的下载链接地址，其中ID是该app在app store对应的唯一的ID编号。
             NSLog(@"点击现在升级按钮");
@@ -158,7 +158,9 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
         }]];
         
         [self presentViewController:alert animated:YES completion:nil];
+
     }
+ 
 }
 
 // 二维码扫描

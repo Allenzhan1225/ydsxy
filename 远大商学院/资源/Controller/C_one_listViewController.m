@@ -42,7 +42,7 @@
     search.id=self.id;
     self.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:search animated:YES];
-//    self.hidesBottomBarWhenPushed=NO;
+    self.hidesBottomBarWhenPushed=NO;
 }
 
 #pragma mark--ViewPagerDelegate,ViewPagerDataSource
@@ -69,7 +69,7 @@
     NSString *str=[string stringByReplacingOccurrencesOfString:@"category" withString:@"resource"];
     NSLog(@"string=%@",str);
     c_two_list.stringUrl=str;
-    self.hidesBottomBarWhenPushed=YES;
+   // self.hidesBottomBarWhenPushed=YES;
     return c_two_list;
 }
 

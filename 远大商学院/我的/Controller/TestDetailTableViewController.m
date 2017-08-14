@@ -27,7 +27,7 @@ static NSString *identifiier=@"cell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.tableView.tableFooterView = [UIView new];
     _defaults=[NSUserDefaults standardUserDefaults];
     // 解析数据
     [self requestData];
@@ -55,9 +55,17 @@ static NSString *identifiier=@"cell";
             temp.dataArray=array;
             temp.u_id=u_id;
             [temp.tableView reloadData];
-//            [_HUD hide:YES afterDelay:0];
+
             [_HUD hideAnimated:YES afterDelay:0];
-//            _HUD.dimBackground=NO;
+
+        }
+        if(array.count == 0){
+            self.tableView.tableFooterView = [UIView new];
+            UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200 ,200)];
+            CGPoint center = CGPointMake(self.view.center.x, self.view.center.y - 40);
+            imgView.center = center;
+            imgView.image = [UIImage imageNamed:@"prompt1.png"];
+            [self.tableView addSubview:imgView];
         }
     };
 }

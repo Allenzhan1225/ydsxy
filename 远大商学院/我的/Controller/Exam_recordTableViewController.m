@@ -32,7 +32,7 @@ static NSString *identifier=@"cell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:identifier];
     
     _defaults=[NSUserDefaults standardUserDefaults];
-    
+    self.tableView.tableFooterView = [UIView new];
     [self requestData];
     
     _HUD=[MBProgressHUD showHUDAddedTo:self.view animated:YES];

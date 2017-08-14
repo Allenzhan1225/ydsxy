@@ -22,19 +22,20 @@
 - (void)buildUI{
     UILabel *title=[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 50, 40)];
     title.text=@"名称:";
-    title.font=[UIFont systemFontOfSize:20];
+    title.font=[UIFont systemFontOfSize:16];
     [self addSubview:title];
     
     self.titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(65, 10, kCELLWIDTH-65, 40)];
-    self.titleLabel.font=[UIFont systemFontOfSize:20];
+    self.titleLabel.font=[UIFont systemFontOfSize:16];
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.textColor=[UIColor blueColor];
     [self addSubview:self.titleLabel];
     
     // 参见问卷按钮
     self.attendBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.attendBtn.frame=CGRectMake(10, 55, 100, 30);
+    self.attendBtn.frame=CGRectMake(kCELLWIDTH - 216, 55, 100, 30);
     // 设置边框、圆角
-    self.attendBtn.layer.borderColor=[[UIColor blackColor] CGColor];
+    self.attendBtn.layer.borderColor=[[UIColor lightGrayColor] CGColor];
     self.attendBtn.layer.borderWidth=1.0f;
     self.attendBtn.layer.masksToBounds=YES;
     self.attendBtn.layer.cornerRadius=8;
@@ -45,9 +46,9 @@
     
     // 查看详情按钮
     self.detailBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.detailBtn.frame=CGRectMake(120, 55, 100, 30);
+    self.detailBtn.frame=CGRectMake(kCELLWIDTH - 108, 55, 100, 30);
     // 设置边框、圆角
-    self.detailBtn.layer.borderColor=[[UIColor blackColor] CGColor];
+    self.detailBtn.layer.borderColor=[[UIColor orangeColor] CGColor];
     self.detailBtn.layer.borderWidth=1.0f;
     self.detailBtn.layer.masksToBounds=YES;
     self.detailBtn.layer.cornerRadius=8;

@@ -25,10 +25,12 @@
     
     self.name=[[UILabel alloc] initWithFrame:CGRectMake(130, 5, kCELLWIDTH-135, 50)];
 //    self.name.numberOfLines=0;
-    self.name.font=[UIFont systemFontOfSize:24];
+    self.name.font=[UIFont systemFontOfSize:16];
+    self.name.adjustsFontSizeToFitWidth = YES;
     [self addSubview:self.name];
     
     self.department=[[UILabel alloc] initWithFrame:CGRectMake(130, 60, kCELLWIDTH-135, 35)];
+    self.department.font=[UIFont systemFontOfSize:14];
     [self addSubview:self.department];
 }
 

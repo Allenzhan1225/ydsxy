@@ -32,8 +32,13 @@
         NSDictionary *dict=responseObject[@"data"];
         NSString *string=responseObject[@"message"];
         LoginModel *model=[LoginModel new];
-        [model setValuesForKeysWithDictionary:dict];
-//        NSLog(@"success!--%@--%@",dict,model);
+        
+        
+        if(dict){
+            [model setValuesForKeysWithDictionary:dict];
+        }
+        
+       //        NSLog(@"success!--%@--%@",dict,model);
         self.manager(model,string); // 加一个error回调，正常则为nil，失败则为error。
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"******error******=%@",error);
