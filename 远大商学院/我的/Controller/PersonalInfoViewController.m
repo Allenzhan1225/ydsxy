@@ -27,6 +27,8 @@
 @property (nonatomic,strong) UITextField *birthday;
 @property (nonatomic,strong) UIImageView *headerView;
 
+@property (nonatomic,strong) UISegmentedControl * sexCtr;
+
 @property (nonatomic,strong) UIDatePicker *datePicker;
 
 @end
@@ -37,6 +39,7 @@
 - (void)edit:(UIBarButtonItem *)sender{
     if ([self.navigationItem.rightBarButtonItem.title isEqual:@"编辑"]) {
         self.nickName.userInteractionEnabled=YES;
+        self.sexCtr.userInteractionEnabled = YES;
         self.gender.userInteractionEnabled=YES;
         [self.birthday removeFromSuperview];
         
@@ -51,6 +54,7 @@
     }else if ([self.navigationItem.rightBarButtonItem.title isEqual:@"确定"]){
         self.nickName.userInteractionEnabled=NO;
         self.gender.userInteractionEnabled=NO;
+        self.sexCtr.userInteractionEnabled = NO;
         [self.view addSubview:self.birthday];
         
         self.navigationItem.rightBarButtonItem.title=@"编辑";
@@ -113,6 +117,21 @@
     }
 }
 #pragma clang diagnostic pop
+
+
+
+#pragma 性别按钮切换
+-(void)sexCtrChange:(UISegmentedControl *) seg{
+    if (seg.selectedSegmentIndex == 0) {
+        [self.defaults setValue:@"男"forKey:@"gender"];
+        [_defaults synchronize];
+    }else{
+        [self.defaults setValue:@"女"forKey:@"gender"];
+        [_defaults synchronize];
+    }
+    
+}
+
 
 //开始拍照
 -(void)takePhoto
@@ -204,7 +223,19 @@
     [self buildUI];
 }
 
+
+
+
+
 - (void)buildUI{
+    
+    //男女切换
+//    UITextField *textField=[[UITextField alloc] initWithFrame:CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, kWIDTH-70, kHEIGHT/16.0)];
+
+  
+    
+    
+    
     // 头像
     UIImageView *headerView=[[UIImageView alloc] initWithFrame:CGRectMake(kWIDTH/2.0-kHEIGHT/8.0, 64, kHEIGHT/4.0, kHEIGHT/4.0)];
     _headerView=headerView;
@@ -234,6 +265,18 @@
     for (int i=0; i<3; i++) {
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(10, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, 50, kHEIGHT/16.0)];
         UITextField *textField=[[UITextField alloc] initWithFrame:CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, kWIDTH-70, kHEIGHT/16.0)];
+       // self.sexCtr = [[UISegmentedControl alloc] initWithFrame:CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, kWIDTH-70, kHEIGHT/16.0)];
+        if (i == 1) {
+            _sexCtr = [[UISegmentedControl alloc] initWithItems:@[@"男",@"女"]];
+//            _sexCtr.backgroundColor = [UIColor greenColor];
+            _sexCtr.selectedSegmentIndex = 0;
+            _sexCtr.frame = CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, 130, kHEIGHT/16.0);
+            [_sexCtr addTarget:self action:@selector(sexCtrChange:) forControlEvents:UIControlEventValueChanged];
+            textField.hidden = YES;
+        }
+      
+        [self.view addSubview:_sexCtr];
+        
         switch (i) {
             case 0: // 昵称--nickName
             {
@@ -255,14 +298,19 @@
                 self.gender=textField;
                 self.gender.delegate=self;
                 NSString *gender=[_defaults valueForKey:@"gender"];
-                if ([gender isEqual:@""] || gender==nil) {
-                    self.gender.placeholder=@"请填写性别";
-                }else{
-                    self.gender.text=gender;
-                    self.gender.placeholder=nil;
+//                if ([gender isEqual:@""] || gender==nil) {
+//                    self.gender.placeholder=@"请填写性别";
+//                }else{
+//                    self.gender.text=gender;
+//                    self.gender.placeholder=nil;
+//                }
+                if ([gender isEqualToString:@"男"]) {
+                    self.sexCtr.selectedSegmentIndex = 0;
+                }else if ([gender isEqualToString:@"女"]){
+                     self.sexCtr.selectedSegmentIndex = 1;
                 }
             }
-                break;
+            break;
             case 2: // 生日
             {
                 label.text=@"生日:";
