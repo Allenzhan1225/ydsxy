@@ -6,7 +6,7 @@
 //  Copyright © 2016年 上海中悟信息有限公司. All rights reserved.
 // 资源一级菜单
 
-#import <ViewPagerController.h>
+#import "ViewPagerController.h"
 
 @interface C_one_listViewController : ViewPagerController
 

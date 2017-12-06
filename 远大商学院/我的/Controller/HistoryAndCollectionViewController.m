@@ -58,7 +58,7 @@ static NSString *collectionCell=@"collectionCell";
 
 - (void)buildUI{
     _segment=[[UISegmentedControl alloc] initWithItems:@[@"历史记录",@"收藏"]];
-    _segment.frame=CGRectMake(0, 64, kWIDTH, 40);
+    _segment.frame=CGRectMake(0, LL_NavigationBarHeight+LL_StatusBarHeight, kWIDTH, 40);
     [_segment addTarget:self action:@selector(selIndex:) forControlEvents:UIControlEventValueChanged];
     _segment.tintColor=[UIColor clearColor];
     // 选中字体颜色
@@ -74,14 +74,14 @@ static NSString *collectionCell=@"collectionCell";
     self.historyView.backgroundColor=[UIColor blackColor];
     [self.segment addSubview:self.historyView];
     
-    _history=[[UITableView alloc] initWithFrame:CGRectMake(0, 104, kWIDTH, kHEIGHT-104) style:UITableViewStylePlain];
+    _history=[[UITableView alloc] initWithFrame:CGRectMake(0, LL_NavigationBarHeight+LL_StatusBarHeight + 40, kWIDTH, kHEIGHT-LL_NavigationBarHeight-LL_StatusBarHeight-LL_TabbarHeight-40) style:UITableViewStylePlain];
     _history.delegate=self;
     _history.dataSource=self;
     [_history registerClass:[UITableViewCell class] forCellReuseIdentifier:historyCell];
     _history.tableFooterView=[[UIView alloc] init];
     [self.view addSubview:_history];
     
-    _collection=[[UITableView alloc] initWithFrame:CGRectMake(0, 104, kWIDTH, kHEIGHT-104) style:UITableViewStylePlain];
+    _collection=[[UITableView alloc] initWithFrame:CGRectMake(0, LL_NavigationBarHeight+LL_StatusBarHeight + 40, kWIDTH, kHEIGHT-LL_NavigationBarHeight-LL_StatusBarHeight-LL_TabbarHeight-40) style:UITableViewStylePlain];
     _collection.delegate=self;
     _collection.dataSource=self;
     [_collection registerClass:[UITableViewCell class] forCellReuseIdentifier:collectionCell];

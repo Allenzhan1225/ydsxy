@@ -18,4 +18,8 @@
 @property (nonatomic,strong) NSString *date; // 添加日期
 @property (nonatomic,assign) NSInteger num; // 数量
 
+
+-(void)setModleWithDict:(NSDictionary *)dict;
+
+
 @end

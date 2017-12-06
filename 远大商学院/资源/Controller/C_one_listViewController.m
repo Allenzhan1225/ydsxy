@@ -18,10 +18,16 @@
 
 @implementation C_one_listViewController
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.title=self.name;
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+//    self.view.frame = CGRectMake(0, LL_StatusBarHeight-20, LL_ScreenWidth,LL_ScreenHeight);
 }
+
+
+//-(void)viewSafeAreaInsetsDidChange{
+////    self.navigationController.navigationBar
+////       self.view.frame = CGRectMake(0, LL_StatusBarHeight - 20, LL_ScreenWidth,LL_ScreenHeight);
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,9 +46,9 @@
 - (void)search{
     SearchViewController *search=[[SearchViewController alloc] init];
     search.id=self.id;
-    self.hidesBottomBarWhenPushed=YES;
+    search.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:search animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
+
 }
 
 #pragma mark--ViewPagerDelegate,ViewPagerDataSource
@@ -61,6 +67,7 @@
 
 -(UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index{
     C_two_listTableViewController *c_two_list=[[C_two_listTableViewController alloc] init];
+ 
 //    C_two_listViewController *c_two_list=[[C_two_listViewController alloc] init];
     
 //    NSArray *array=@[@7,@8,@9,@10,@11,@12,@13,@14];
@@ -70,6 +77,7 @@
     NSLog(@"string=%@",str);
     c_two_list.stringUrl=str;
    // self.hidesBottomBarWhenPushed=YES;
+  
     return c_two_list;
 }
 

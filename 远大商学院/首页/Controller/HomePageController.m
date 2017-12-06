@@ -79,6 +79,10 @@
 static NSString *lastestNewsIdentifier=@"lastestNewsCell";
 static NSString *companyNewsIdentifier=@"companyNewsCell";
 
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -175,7 +179,7 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     // UISegmentedControl——分段选择控制器
     // 最新资讯
-    self.lastestNewsTV=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height-149) style:UITableViewStylePlain];
+    self.lastestNewsTV=[[UITableView alloc] initWithFrame:CGRectMake(0, LL_NavigationBarHeight+LL_StatusBarHeight+30, self.view.frame.size.width, self.view.frame.size.height-LL_NavigationBarHeight-LL_StatusBarHeight-30-LL_TabbarHeight) style:UITableViewStylePlain];
     self.lastestNewsTV.delegate=self;
     self.lastestNewsTV.dataSource=self;
     self.lastestNewsTV.tag=1000;
@@ -212,20 +216,20 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
     
     
     // 情景一：采用本地图片实现
-    NSArray *imageNames = @[@"001.jpg",
-                            @"002.jpg",
-                            @"003.jpg",
-                            @"004.jpg",
-                            @"005.jpg",
-                            @"006.jpg",
-                            @"007.jpg",
-                            @"008.jpg",
-                            @"009.jpg",
-                            @"0010.jpg",
-                            @"0011.jpg",
-                            @"0012.jpg",
-                            @"0013.jpg",
-                            @"0014.jpg",
+    NSArray *imageNames = @[@"baner001.jpg",
+                            @"baner002.jpg",
+                            @"baner003.jpg",
+                            @"baner004.jpg",
+                            @"baner005.jpg",
+                            @"baner006.jpg",
+                            @"baner007.jpg",
+                            @"baner008.jpg",
+                            @"baner009.jpg",
+                            @"baner0010.jpg",
+                            @"baner0011.jpg",
+                            @"baner0012.jpg",
+                            @"baner0013.jpg",
+                            @"baner0014.jpg",
                             // 本地图片请填写全名
                             ];
     // 本地加载 --- 创建不带标题的图片轮播器
@@ -252,7 +256,7 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
      NSArray *array=@[@"商学院新闻",@"商学院简介",@"内训师简介"];
     UISegmentedControl *segment=[[UISegmentedControl alloc] initWithItems:array];
     self.segment=segment;
-    segment.frame=CGRectMake(0, 64, kWIDTH, 30);
+    segment.frame=CGRectMake(0, LL_StatusBarHeight+LL_NavigationBarHeight, kWIDTH, 30);
     segment.tintColor=[UIColor clearColor];
     // 选中字体颜色
     NSDictionary *selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor colorWithRed:27/255.0 green:93/255.0 blue:150/255.0 alpha:1]};
@@ -325,7 +329,7 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
                             // 本地图片请填写全名
                             ];
     // 本地加载 --- 创建不带标题的图片轮播器
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kWIDTH, kHEIGHT-200) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kWIDTH, (kWIDTH/720)* 540) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
     cycleScrollView.tag = 10000+1;
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
@@ -334,7 +338,10 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
     cycleScrollView.pageDotColor = [UIColor colorWithRed:27/255.0 green:93/255.0 blue:150/255.0 alpha:1];
     //         --- 轮播时间间隔，默认1.0秒，可自定义
     cycleScrollView.autoScrollTimeInterval = 3.0;
-        self.myTableView.tableHeaderView = cycleScrollView;
+    UIView *  headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWIDTH, kHEIGHT-150)];
+    [headerView addSubview:cycleScrollView];
+    cycleScrollView.center = headerView.center;
+    self.myTableView.tableHeaderView = headerView;
 
     
     
@@ -637,7 +644,7 @@ static NSString *companyNewsIdentifier=@"companyNewsCell";
         self.LGPhotoPickerBrowserPhotoArray = [[NSMutableArray alloc] init];
         for (int i = 1; i <= 14; i++) {
             LGPhotoPickerBrowserPhoto *photo = [[LGPhotoPickerBrowserPhoto alloc] init];
-            photo.photoImage = [UIImage imageNamed:[NSString stringWithFormat:@"00%d.jpg",i]];
+            photo.photoImage = [UIImage imageNamed:[NSString stringWithFormat:@"baner00%d.jpg",i]];
             [self.LGPhotoPickerBrowserPhotoArray addObject:photo];
         }
        // NSLog(@"点击商学院简介%ld",index);

@@ -16,6 +16,35 @@
 #define kCELLWIDTH self.frame.size.width
 #define kCELLHEIGHT self.frame.size.height
 
+// UIScreen width.
+#define  LL_ScreenWidth   [UIScreen mainScreen].bounds.size.width
+
+// UIScreen height.
+#define  LL_ScreenHeight  [UIScreen mainScreen].bounds.size.height
+
+//判断iPhoneX
+// iPhone X
+#define  LL_iPhoneX (LL_ScreenWidth == 375.f && LL_ScreenHeight == 812.f ? YES : NO)
+// Status bar height.
+#define  LL_StatusBarHeight      (LL_iPhoneX ? 44.f : 20.f)
+
+// Navigation bar height.
+#define  LL_NavigationBarHeight  44.f
+
+// Tabbar height.
+#define  LL_TabbarHeight         (LL_iPhoneX ? (49.f+34.f) : 49.f)
+
+// Tabbar safe bottom margin.
+#define  LL_TabbarSafeBottomMargin         (LL_iPhoneX ? 34.f : 0.f)
+
+// Status bar & navigation bar height.
+#define  LL_StatusBarAndNavigationBarHeight  (LL_iPhoneX ? 88.f : 64.f)
+
+#define LL_ViewSafeAreInsets(view) ({UIEdgeInsets insets; if(@available(iOS 11.0, *)) {insets = view.safeAreaInsets;} else {insets = UIEdgeInsetsZero;} insets;})
+
+
+
+
 // 用户登录与注销
 //#define kURLOFUSERLOGIN @"http://peixun.xgyuanda.com/appc/login.html?token=sxyapp&"
 //#define kURLOFUSERLOGOUT @"http://peixun.xgyuanda.com/appc/log_out.html?token=sxyapp&"
@@ -78,6 +107,9 @@
 #define kRECRUIT @"http://zp-houtai.xgyuanda.com/mindex.php"
 // DISC性格测试
 #define kDISC @"http://peixun.xgyuanda.com/DiscApi/all_question?token=sxyapp&u_id="
+
+
+
 
 
 #endif /* Header_h */

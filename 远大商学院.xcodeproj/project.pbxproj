@@ -114,6 +114,7 @@
 		2C66D6B71D4C47210089AD24 /* LastestNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C66D6B61D4C47210089AD24 /* LastestNewsCell.m */; };
 		2CEAF3DB1D75707800C69623 /* CheckMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEAF3DA1D75707800C69623 /* CheckMealViewController.m */; };
 		2CEAF3DE1D75789700C69623 /* CheckMealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEAF3DD1D75789700C69623 /* CheckMealModel.m */; };
+		9FC885871FD6944A002FB6E2 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC885861FD6944A002FB6E2 /* ViewPagerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +344,8 @@
 		2CEAF3DD1D75789700C69623 /* CheckMealModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckMealModel.m; sourceTree = "<group>"; };
 		5A4872A0D40E1A7BA6DB2721 /* libPods-远大商学院.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-远大商学院.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E820656087014B32BD7EC06 /* Pods-远大商学院.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-远大商学院.debug.xcconfig"; path = "Pods/Target Support Files/Pods-远大商学院/Pods-远大商学院.debug.xcconfig"; sourceTree = "<group>"; };
+		9FC885851FD6944A002FB6E2 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
+		9FC885861FD6944A002FB6E2 /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
 		B184920261BAB0016BC3286A /* Pods-远大商学院.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-远大商学院.release.xcconfig"; path = "Pods/Target Support Files/Pods-远大商学院/Pods-远大商学院.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -407,6 +410,7 @@
 		2C0FE2F71D4B077600167D04 /* 远大商学院 */ = {
 			isa = PBXGroup;
 			children = (
+				9FC885841FD6944A002FB6E2 /* ICViewPager */,
 				2C61DC301EEE453C00F4C9E0 /* LGPhoto */,
 				2C0FE3ED1D4B315600167D04 /* AppDelegate */,
 				2C0FE3D91D4B314F00167D04 /* 登录 */,
@@ -933,6 +937,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9FC885841FD6944A002FB6E2 /* ICViewPager */ = {
+			isa = PBXGroup;
+			children = (
+				9FC885851FD6944A002FB6E2 /* ViewPagerController.h */,
+				9FC885861FD6944A002FB6E2 /* ViewPagerController.m */,
+			);
+			path = ICViewPager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1069,13 +1082,30 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-远大商学院/Pods-远大商学院-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/UMSocialSDKResourcesNew.bundle",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/TencentOpenApi_IOS_Bundle.bundle",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_Extra_Frameworks/SinaSSO/WeiboSDK.bundle",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMSCommentDetailController.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMSCommentInputController.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMSCommentInputControlleriPad.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMShareEditViewController.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMShareEditViewControlleriPad.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMSLoginViewController.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMSnsAccountViewController.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/SocialSDKXib/UMSShareListController.xib",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/en.lproj",
+				"${PODS_ROOT}/UMengSocialCOM/Umeng_SDK_Social_iOS_ARM64_5.2.1/UMSocial_Sdk_5.2.1/zh-Hans.lproj",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-远大商学院/Pods-远大商学院-resources.sh\"\n";
+			shellScript = "
+";
 			showEnvVarsInLog = 0;
 		};
 		926401C8EA5B47E41F48E574 /* [CP] Check Pods Manifest.lock */ = {
@@ -1084,13 +1114,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-远大商学院-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B9FC4DAE56DB02F6570D98EF /* [CP] Embed Pods Frameworks */ = {
@@ -1194,6 +1227,7 @@
 				2C61DC9F1EEE453C00F4C9E0 /* LGPhotoPickerViewController.m in Sources */,
 				2C0FE3B21D4B313C00167D04 /* C_two_listTableViewController.m in Sources */,
 				2C0FE37A1D4B312C00167D04 /* PersonalInfoViewController.m in Sources */,
+				9FC885871FD6944A002FB6E2 /* ViewPagerController.m in Sources */,
 				2C0FE3B11D4B313C00167D04 /* C_one_listViewController.m in Sources */,
 				2C61DCA51EEE453C00F4C9E0 /* DACircularProgressView.m in Sources */,
 				2C0FE38C1D4B312C00167D04 /* QRCodeBacgrouView.m in Sources */,

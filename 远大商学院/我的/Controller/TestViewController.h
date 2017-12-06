@@ -6,7 +6,7 @@
 //  Copyright © 2016年 上海中悟信息有限公司. All rights reserved.
 // 在线考试
 
-#import <ViewPagerController.h>
+#import "ViewPagerController.h"
 
 @interface TestViewController : ViewPagerController
 

@@ -57,8 +57,10 @@ static NSString *CellIdentifier=@"reuseIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Setting"] style:UIBarButtonItemStyleDone target:self action:@selector(clickSetting)];
-    self.array=@[@"最近课程",@"在线考试",@"问卷调查",@"考试记录",@"历史及收藏",@"绩效系统",@"勾餐系统",@"人才招聘",@"DISC性格测试",@"退出登录"];
-    self.imgArray=@[@"The recent course",@"The online test",@"The questionnaire survey",@"Test records",@"collection",@"performance",@"can",@"recruitment",@"dis",@"exit"];
+//    self.array=@[@"最近课程",@"在线考试",@"问卷调查",@"考试记录",@"历史及收藏",@"绩效系统",@"勾餐系统",@"人才招聘",@"DISC性格测试",@"退出登录"];
+    self.array=@[@"最近课程",@"在线考试",@"问卷调查",@"考试记录",@"历史及收藏",@"DISC性格测试",@"退出登录"];
+    //self.imgArray=@[@"The recent course",@"The online test",@"The questionnaire survey",@"Test records",@"collection",@"performance",@"can",@"recruitment",@"dis",@"exit"];
+    self.imgArray=@[@"The recent course",@"The online test",@"The questionnaire survey",@"Test records",@"collection",@"dis",@"exit"];
     
     // 注册
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];

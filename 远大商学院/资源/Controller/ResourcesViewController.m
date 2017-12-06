@@ -118,9 +118,9 @@ static NSString *identifier=@"cell";
     c_one_listVC.string=string;
     c_one_listVC.name=model.name;
     c_one_listVC.id=model.id;
-    self.hidesBottomBarWhenPushed=YES;
+    c_one_listVC.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:c_one_listVC animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
+//    self.hidesBottomBarWhenPushed=NO;
 }
 
 /*
@@ -159,8 +159,7 @@ static NSString *identifier=@"cell";
 
 /*
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

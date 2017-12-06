@@ -103,6 +103,17 @@ static NSString *identifier=@"cell";
         dispatch_async(dispatch_get_main_queue(), ^{
             // 清理缓存
             [self clearCache:cachPath];
+//            NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+//            
+//            NSDictionary* dict = [defs dictionaryRepresentation];
+//            
+//            for(id key in dict) {
+//                [defs removeObjectForKey:key];
+//            }
+//            
+//            [defs synchronize];
+            
+
             // 刷新主线程
             [self.tableView reloadData];
         });

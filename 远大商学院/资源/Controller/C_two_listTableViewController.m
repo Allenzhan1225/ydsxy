@@ -24,9 +24,16 @@
 
 static NSString *identifier=@"cell";
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+ 
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
     [self.tableView registerClass:[C_two_lisTableViewCell class] forCellReuseIdentifier:identifier];
     [self requestData];
     
@@ -38,15 +45,13 @@ static NSString *identifier=@"cell";
 
 - (void)requestData{
     NSString *encode=[self.stringUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSLog(@"%@",encode);
     ListDetailManager *detail=[ListDetailManager new];
     [detail requestDataWithURL:encode];
     __weak typeof (self)temp=self;
     detail.manager=^(NSMutableArray *array){
         if (array.count==0) {
-//            UILabel *label=[[UILabel alloc] initWithFrame:self.view.frame];
-//            label.text=@"暂无任何数据";
-//            label.textAlignment=NSTextAlignmentCenter;
-//            [self.tableView addSubview:label];
+
             self.tableView.tableFooterView = [UIView new];
             UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200 , 200 )];
             CGPoint center = CGPointMake(self.view.center.x, self.view.center.y - 40);
@@ -54,7 +59,7 @@ static NSString *identifier=@"cell";
             imgView.image = [UIImage imageNamed:@"prompt1.png"];
             [self.tableView addSubview:imgView];
         }else{
-              self.tableView.tableFooterView = [UIView new];
+//            self.tableView.tableFooterView = [UIView new];
             temp.dataArray=array;
             [temp.tableView reloadData];
         }
@@ -93,12 +98,14 @@ static NSString *identifier=@"cell";
 //    cell.textLabel.text=model.title;
     cell.title.text=model.title;
     cell.num.text=[NSString stringWithFormat:@"%ld",(long)model.num];
+    
     cell.date.text=model.date;
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kRESOURCESIMGURL,model.pic]];
 //    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",k1,model.pic]];
 //    NSLog(@"url=%@",url);
     [cell.imgView sd_setImageWithURL:url];
     return cell;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -119,49 +126,5 @@ static NSString *identifier=@"cell";
     }
     return _dataArray;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

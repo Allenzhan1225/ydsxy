@@ -30,7 +30,8 @@
         }];
         for (int i=0; i<keyArray.count; i++) {
             C_two_lsitModel *model=[C_two_lsitModel new];
-            [model setValuesForKeysWithDictionary:dic[keyArray[i]]];
+            //[model setValuesForKeysWithDictionary:dic[keyArray[i]]];
+            [model setModleWithDict:dic[keyArray[i]]];
             [array addObject:model];
         }
         self.manager(array);

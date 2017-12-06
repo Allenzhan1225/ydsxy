@@ -31,6 +31,7 @@
 
 @property (nonatomic,strong) UIDatePicker *datePicker;
 
+
 @end
 
 @implementation PersonalInfoViewController
@@ -40,19 +41,21 @@
     if ([self.navigationItem.rightBarButtonItem.title isEqual:@"编辑"]) {
         self.nickName.userInteractionEnabled=YES;
         self.sexCtr.userInteractionEnabled = YES;
+        self.headerView.userInteractionEnabled = YES;
         self.gender.userInteractionEnabled=YES;
         [self.birthday removeFromSuperview];
         
         self.navigationItem.rightBarButtonItem.title=@"确定";
         // 添加时间选择器
         self.datePicker=[[UIDatePicker alloc] init];
-        self.datePicker.frame=CGRectMake(60, kHEIGHT/16.0*7+64, kWIDTH-70, 50);
+        self.datePicker.frame=CGRectMake(60, kHEIGHT/16.0*7+64 - 60, kWIDTH-70, 50);
         self.datePicker.datePickerMode=UIDatePickerModeDate;
         self.datePicker.date=[NSDate date];
         [self.datePicker addTarget:self action:@selector(dateSelect) forControlEvents:UIControlEventValueChanged];
         [self.view addSubview:self.datePicker];
     }else if ([self.navigationItem.rightBarButtonItem.title isEqual:@"确定"]){
         self.nickName.userInteractionEnabled=NO;
+        self.headerView.userInteractionEnabled = NO;
         self.gender.userInteractionEnabled=NO;
         self.sexCtr.userInteractionEnabled = NO;
         [self.view addSubview:self.birthday];
@@ -92,7 +95,9 @@
 }
 
 - (void)changeImg:(UIButton *)sender{
-    self.myActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil  otherButtonTitles: @"打开照相机", @"从手机相册获取",nil];
+//    typedef weakSelf <#name#>
+    __weak typeof(self) weakSelf = self;
+    self.myActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:weakSelf cancelButtonTitle:@"取消" destructiveButtonTitle:nil  otherButtonTitles: @"打开照相机", @"从手机相册获取",nil];
     [self.myActionSheet showInView:self.view];
 }
 
@@ -148,6 +153,12 @@
     }else
     {
         NSLog(@"模拟其中无法打开照相机,请在真机中使用");
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //设置拍照后的图片可被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:nil];
     }
 }
 
@@ -237,11 +248,15 @@
     
     
     // 头像
-    UIImageView *headerView=[[UIImageView alloc] initWithFrame:CGRectMake(kWIDTH/2.0-kHEIGHT/8.0, 64, kHEIGHT/4.0, kHEIGHT/4.0)];
+    UIImageView *headerView=[[UIImageView alloc] initWithFrame:CGRectMake(kWIDTH - 100, 74, 80, 80)];
     _headerView=headerView;
     // 圆角
     headerView.layer.masksToBounds=YES;
-    headerView.layer.cornerRadius=kHEIGHT/8.0;
+    headerView.layer.cornerRadius= 40;
+//    headerView.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeImg:)];
+    [headerView addGestureRecognizer:tap];
+    
     //    headerView.backgroundColor=[UIColor orangeColor];
     NSString *imgName=[_defaults valueForKey:@"imgName"];
     if ([imgName isEqual:@""] || imgName==nil) {
@@ -256,26 +271,37 @@
     
     // 头像
     UIButton *imgBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    imgBtn.frame=CGRectMake(10, kHEIGHT/4.0+64, 60, kHEIGHT/16.0);
-    [imgBtn setTitle:@"换头像" forState:UIControlStateNormal];
+    imgBtn.frame=CGRectMake(10, 114 -20, 60, kHEIGHT/16.0);
+    [imgBtn setTitle:@"头像" forState:UIControlStateNormal];
     [imgBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    [imgBtn addTarget:self action:@selector(changeImg:) forControlEvents:UIControlEventTouchUpInside];
+   // [imgBtn addTarget:self action:@selector(changeImg:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
     [self.view addSubview:imgBtn];
     
-    for (int i=0; i<3; i++) {
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(10, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, 50, kHEIGHT/16.0)];
-        UITextField *textField=[[UITextField alloc] initWithFrame:CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, kWIDTH-70, kHEIGHT/16.0)];
+    for (int i=0; i<4; i++) {
+        UILabel * label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 160 + 50 * i , kWIDTH - 20,1)];
+        if (i < 3) {
+            
+        }
+        label1.backgroundColor = [UIColor lightGrayColor];
+        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(10, 160 + 50 * i, 50, kHEIGHT/10.0)];
+        UITextField *textField=[[UITextField alloc] initWithFrame:CGRectMake(60, 160 + 50 * i, kWIDTH-70, kHEIGHT/10.0)];
        // self.sexCtr = [[UISegmentedControl alloc] initWithFrame:CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, kWIDTH-70, kHEIGHT/16.0)];
         if (i == 1) {
             _sexCtr = [[UISegmentedControl alloc] initWithItems:@[@"男",@"女"]];
 //            _sexCtr.backgroundColor = [UIColor greenColor];
             _sexCtr.selectedSegmentIndex = 0;
-            _sexCtr.frame = CGRectMake(60, kHEIGHT/16.0*5+kHEIGHT/16.0*i+64, 130, kHEIGHT/16.0);
+            _sexCtr.frame = CGRectMake(60+15, 160 + 50 * i + 10, 130, 30);
+            _sexCtr.userInteractionEnabled = NO;
             [_sexCtr addTarget:self action:@selector(sexCtrChange:) forControlEvents:UIControlEventValueChanged];
             textField.hidden = YES;
         }
       
         [self.view addSubview:_sexCtr];
+        [self.view addSubview:label1];
         
         switch (i) {
             case 0: // 昵称--nickName
